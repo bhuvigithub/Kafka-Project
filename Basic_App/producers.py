@@ -9,7 +9,10 @@ from kafka import KafkaProducer
 from kafka.errors import KafkaError
 
 def produce_messages():
-    producer = KafkaProducer(bootstrap_servers=['10.109.167.22:9092'],api_version=(0,22,1))
+    #Check with ClusterIP
+    #producer = KafkaProducer(bootstrap_servers=['10.109.167.22:9092'],api_version=(0,22,1))
+    #Check with NodePort
+    producer = KafkaProducer(bootstrap_servers=['10.102.30.43:9095'],api_version=(0,22,1))
 
     # Asynchronous data send
     data = producer.send('test-topic', b'Hola!')

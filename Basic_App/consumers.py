@@ -11,7 +11,11 @@ def consume_messages():
     # consume latest messages and auto-commit offsets
     consumer = KafkaConsumer('test-topic',
                          group_id='test-group',
-                         bootstrap_servers=['10.109.167.22:9092'],api_version=(0,22,1))
+                         #ClusterIP check
+                         #bootstrap_servers=['10.109.167.22:9092'],api_version=(0,22,1))
+                         #Nodeport Check
+                         bootstrap_servers=['10.102.30.43:9095'],api_version=(0,22,1))
+
     for message in consumer:
     
         print ("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
