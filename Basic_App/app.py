@@ -4,13 +4,13 @@ Created on Wed May 12 20:48:33 2021
 
 @author: Bhuvi
 """
-#import time
+import time
 from producers import produce_messages
-#from consumers import consume_messages
+from consumers import consume_messages
 
 if __name__ == "__main__":
     produce_messages()
     
-    #time.sleep(5)
+    time.sleep(5)
     
-    #consume_messages()
+    consume_messages()

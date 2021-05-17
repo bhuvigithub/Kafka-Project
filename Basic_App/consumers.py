@@ -10,11 +10,15 @@ from kafka import KafkaConsumer
 def consume_messages():
     # consume latest messages and auto-commit offsets
     consumer = KafkaConsumer('test-topic',
-                         group_id='test-group',
+                         #group_id='test-group',
                          #ClusterIP check
                          #bootstrap_servers=['10.109.167.22:9092'],api_version=(0,22,1))
                          #Nodeport Check
-                         bootstrap_servers=['10.102.30.43:9095'],api_version=(0,22,1))
+                         bootstrap_servers=['localhost:9095'],
+                         auto_offset_reset='earliest',
+                         enable_auto_commit=False,
+                         consumer_timeout_ms=1000)
+
 
     for message in consumer:
     
@@ -22,12 +26,6 @@ def consume_messages():
                                           message.offset, message.key,
                                           message.value))
 
-#consume_messages()
-# consume earliest available messages, but don't commit offsets
-KafkaConsumer(auto_offset_reset='earliest', enable_auto_commit=False)
-
-# StopIteration if no message received after 1sec
-KafkaConsumer(consumer_timeout_ms=1000)
 
 # Subscribe to the regex topic pattern
 #consumer = KafkaConsumer()
@@ -37,7 +35,7 @@ KafkaConsumer(consumer_timeout_ms=1000)
 
 #consumer1 = KafkaConsumer('test-topic',
  #                         group_id='test-group',
-  #                        bootstrap_servers=['10.109.167.22:9091'],api_version=(0,22,1))
+  #                        bootstrap_servers=['localhost:9095'])
 #consumer2 = KafkaConsumer('test-topic',
  #                         group_id='test-group',
-  #                        bootstrap_servers=['10.109.167.22:9093'],api_version=(0,22,1))
+  #                        bootstrap_servers=['localhost:9095'])

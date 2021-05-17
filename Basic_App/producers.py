@@ -12,7 +12,7 @@ def produce_messages():
     #Check with ClusterIP
     #producer = KafkaProducer(bootstrap_servers=['10.109.167.22:9092'],api_version=(0,22,1))
     #Check with NodePort
-    producer = KafkaProducer(bootstrap_servers=['10.102.30.43:9095'],api_version=(0,22,1))
+    producer = KafkaProducer(bootstrap_servers=['localhost:9095'])
 
     # Asynchronous data send
     data = producer.send('test-topic', b'Hola!')
