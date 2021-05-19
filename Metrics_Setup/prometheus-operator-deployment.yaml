@@ -7,6 +7,8 @@ metadata:
     controller-gen.kubebuilder.io/version: v0.4.1
   creationTimestamp: null
   name: alertmanagerconfigs.monitoring.coreos.com
+  # This is taken from original repo https://raw.githubusercontent.com/coreos/prometheus-operator/master/bundle.yaml
+  # Further updated inspired from https://github.com/1984shekhar/AMQ_STREAMS_KAFKA_POC/blob/master/strimzi-grafana-prometheus/prometheus-operator-deployment.yaml
 spec:
   group: monitoring.coreos.com
   names:
