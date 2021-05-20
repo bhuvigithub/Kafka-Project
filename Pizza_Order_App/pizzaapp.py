@@ -60,7 +60,7 @@ def produce_pizza_messages(topic_name='new-pizza-orders',
                  no_of_messages=-1,
                  max_waiting_time_in_sec=5):
     producer = KafkaProducer(
-        bootstrap_servers=['localhost:9095'],
+        bootstrap_servers=['localhost:9097'],
         value_serializer=lambda v: json.dumps(v).encode('ascii'),
         key_serializer=lambda v: json.dumps(v).encode('ascii')
     )

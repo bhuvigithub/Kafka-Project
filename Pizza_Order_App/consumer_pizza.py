@@ -10,7 +10,7 @@ from kafka import KafkaConsumer
 def consume_pizza_messages():
     # consume latest messages and auto-commit offsets
     consumer = KafkaConsumer('new-pizza-orders',
-                         bootstrap_servers=['localhost:9095'],
+                         bootstrap_servers=['localhost:9097'],
                          auto_offset_reset='earliest',
                          enable_auto_commit=False,
                          consumer_timeout_ms=1000)
