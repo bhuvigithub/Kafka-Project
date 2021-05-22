@@ -12,7 +12,6 @@ from faker import Faker
 import json
 from kafka import KafkaProducer
 from producer_pizza import PizzaSupplier
-from consumer_pizza import consume_pizza_messages
 
 MAX_PIZZAS_PER_ORDER = 15
 MAX_EXTRA_TOPPINGS_PER_PIZZA = 8
@@ -29,7 +28,7 @@ Faker.seed(4321)
 fake.add_provider(PizzaSupplier)
 
 # creating function to generate the pizza Order
-def gen_pizza_order (ordercount = 1):
+def gen_pizza_order (ordercount):
     outlet = fake.pizza_outlets()
     # Each Order can have 1-15 pizzas in it
     pizzas = []
@@ -55,7 +54,7 @@ def gen_pizza_order (ordercount = 1):
     return message, key
 
 
-# function produce_pizza_messages to produce messages with Faker
+# function produce_msgs starts producing messages with Faker
 def produce_pizza_messages(topic_name='new-pizza-orders',
                  no_of_messages=-1,
                  max_waiting_time_in_sec=5):
@@ -67,24 +66,32 @@ def produce_pizza_messages(topic_name='new-pizza-orders',
     if no_of_messages <= 0:
         no_of_messages = float('inf')
     i = 0
-    while i < no_of_messages:
-        message, key = gen_pizza_order(i)
+    try:
 
-        print("Sending: {}".format(message))
-        # sending the message to Kafka from producer
-        producer.send(topic_name,
-                      key=key,
-                      value=message)
-        # Sleeping time in between each message sent from producers
-        sleep_time = random.randint(0, max_waiting_time_in_sec * 10)/10
-        print("Sleeping for-"+str(sleep_time)+'secs')
-        time.sleep(sleep_time)
+        while i < no_of_messages:
+            message, key = gen_pizza_order(i)
 
-        # Force flushing all the messages
-        if (i % 100) == 0:
-            producer.flush()
-        i = i + 1
-    producer.flush()
+            print("Sending: {}".format(message))
+             # sending the message to Kafka
+            producer.send(topic_name,
+                         key=key,
+                         value=message)
+             # Sleeping time
+            sleep_time = random.randint(0, max_waiting_time_in_sec * 10)/10
+            print("Sleeping for-"+str(sleep_time)+'secs')
+            time.sleep(sleep_time)
+
+             # Force flushing of all messages
+            if (i % 100) == 0:
+                 producer.flush()
+            i = i + 1
+    except KeyboardInterrupt:
+        print("Shutdown signal received. Closing producer...")
+        producer.close(timeout=5)
+        print("Producer has been closed.")
+    finally:
+        producer.flush()
+
 
 # calling the produce_pizza_messages function that take 3 parameters as inputs
 # Param-1 - topic-name
@@ -100,13 +107,11 @@ def main():
     prod_topic_name=args.topic_name
     produce_pizza_messages(topic_name=prod_topic_name,
                  no_of_messages=int(args.no_of_messages),
-                 max_waiting_time_in_sec=int(args.max_waiting_time)
+                 max_waiting_time_in_sec=float(args.max_waiting_time)
                  )
     print(args.no_of_messages)
 
 if __name__ == "__main__":
     main()
     
-    time.sleep(10)
-    
-    consume_pizza_messages()
+  
