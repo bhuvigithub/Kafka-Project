@@ -14,7 +14,7 @@ def consume_pizza_messages():
                          bootstrap_servers=['localhost:9097'],
                          #auto_offset_reset='earliest',
                          auto_offset_reset='latest',
-                         enable_auto_commit=False,
+                         enable_auto_commit=True,
                          consumer_timeout_ms=1000)
     keep_sending: bool = True
     try:
