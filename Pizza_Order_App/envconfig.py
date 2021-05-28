@@ -14,6 +14,7 @@ Created on Tue May 18 01:41:23 2021
 
 import time
 import random
+import os
 #import argparse
 from faker import Faker
 import json
@@ -113,9 +114,12 @@ def main():
     #parser.add_argument('--max-waiting-time', help="Max waiting time between messages in seconds", required=True)
     #args = parser.parse_args()
     #prod_topic_name=args.topic_name
-    tn = config('TOPIC_NAME')
-    nom = config('NO_OF_MESSAGES')
-    mwt = config('MAX_WAIT_TIME')
+    #tn = config('TOPIC_NAME')
+    #nom = config('NO_OF_MESSAGES')
+    #mwt = config('MAX_WAIT_TIME')
+    tn = os.getenv('TOPIC_NAME')
+    nom = os.getenv('NO_OF_MESSAGES')
+    mwt = os.getenv('MAX_WAIT_TIME')
     produce_pizza_messages(topic_name=tn,
                  no_of_messages=int(nom),
                  max_waiting_time_in_sec=float(mwt)
