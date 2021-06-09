@@ -56,7 +56,7 @@ RUN pip install faker
 
 RUN pip install python-decouple
 
-CMD [ "multi_topic_producer1.py" ] 
+CMD [ "pizzaapp_multiconsumer1.py" ] 
 
 ENTRYPOINT [ "python3" ] 
 

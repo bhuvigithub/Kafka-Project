@@ -1,7 +1,7 @@
 import time
 import argparse
 #from multiconsumer import multiconsume_pizza_messages
-from testconsumer import multiconsume_pizza_messages
+from testconsumer1 import multiconsume_pizza_messages
 
 if __name__ == "__main__":
     try:
