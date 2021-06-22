@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kafka-producer
-        image: bhuvidockerhub/kafkaproject:v3.0
+        image: bhuvidockerhub/kafkaproject:v4.0
         ports:
         imagePullPolicy: Always 
         args: ["multi_topic_producer1.py", "bash"]
