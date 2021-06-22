@@ -10,10 +10,10 @@ from kafka.admin import KafkaAdminClient
 import os
 #from decouple import config
 
-def multiconsume_pizza_messages():
-    kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
-        bootstrap_servers='10.98.131.151:9099'
-    )
+def multiconsume_pizza_messages(kafka_admin_client):
+    #kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
+     #   bootstrap_servers='10.98.131.151:9099'
+    #)
 
     broker_topics = kafka_admin_client.list_topics()
     print(broker_topics)
