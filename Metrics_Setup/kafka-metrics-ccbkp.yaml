@@ -61,13 +61,7 @@ spec:
   entityOperator:
     topicOperator: {}
     userOperator: {}
-  cruiseControl:
-    metricsConfig:
-      type: jmxPrometheusExporter
-      valueFrom:
-        configMapKeyRef:
-          name: kafka-metrics
-          key: cruise-control-metrics-config.yml
+  cruiseControl: {}
   kafkaExporter:
     topicRegex: ".*"
     groupRegex: ".*"
@@ -234,10 +228,3 @@ data:
       labels:
         replicaId: "$2"
         memberType: "$3"
-  cruise-control-metrics-config.yml: |
-    # See https://github.com/prometheus/jmx_exporter for more info about JMX Prometheus Exporter metrics
-    lowercaseOutputName: true
-    rules:
-    - pattern: kafka.cruisecontrol<name=(.+)><>(\w+)
-      name: kafka_cruisecontrol_$1_$2
-      type: GAUGE
