@@ -92,7 +92,7 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
 
         while i < no_of_messages:
             message, key = gen_pizza_order(i)
-            
+            # inspired from https://github.com/tomncooper/kafka-topic-loader/blob/master/producers.py 
             topic: str
             node_partiton_leader: Dict[int, List[int]]
 

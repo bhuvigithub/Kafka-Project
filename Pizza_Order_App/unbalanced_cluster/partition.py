@@ -18,7 +18,7 @@ LOG: logging.Logger = logging.getLogger("kafka-topic-loader.topic")
 
 NEGLECT_TOPICS = ["__", "strimzi"]
 
-
+# inspired from https://github.com/tomncooper/kafka-topic-loader/blob/master/topics.py
 def get_partitions(
     kafka_admin_client: KafkaAdminClient= KafkaAdminClient(
         bootstrap_servers='10.98.131.151:9099'
