@@ -1,7 +1,7 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: my-cluster-with-metrics
+  name: my-cluster-metrics
 spec:
   kafka:
     version: 2.7.0

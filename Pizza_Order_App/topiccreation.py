@@ -93,7 +93,7 @@ def execute_topic_creation(
 
     LOG.debug("Create Kafka Admin Client")
     kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
-        bootstrap_servers='10.98.131.151:9099',
+        bootstrap_servers='10.105.85.14:9099',
         client_id="topic-creator",
         metadata_max_age_ms=response_timeout,
     )

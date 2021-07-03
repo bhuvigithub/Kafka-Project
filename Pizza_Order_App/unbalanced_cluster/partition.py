@@ -21,7 +21,7 @@ NEGLECT_TOPICS = ["__", "strimzi"]
 # inspired from https://github.com/tomncooper/kafka-topic-loader/blob/master/topics.py
 def get_partitions(
     kafka_admin_client: KafkaAdminClient= KafkaAdminClient(
-        bootstrap_servers='10.98.131.151:9099'
+        bootstrap_servers='10.105.85.14:9099'
         ),
 ) -> Dict[str, Dict[int, PartitionMetadata]]:
 
@@ -30,7 +30,7 @@ def get_partitions(
 
 def sorting_partitions_by_leader(
     kafka_admin_client: KafkaAdminClient= KafkaAdminClient(
-        bootstrap_servers='10.98.131.151:9099'
+        bootstrap_servers='10.105.85.14:9099'
         ),
 ) -> Dict[str, Dict[int, List[int]]]:
     """ This method produces a dictionary which maps from topic of string type to node id to that of a

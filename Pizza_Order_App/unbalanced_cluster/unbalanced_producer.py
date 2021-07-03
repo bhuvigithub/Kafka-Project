@@ -79,7 +79,7 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
     nodes: List[int] = [node.nodeId for node in kafka_admin_client._client.cluster.brokers()]
     
     producer = KafkaProducer(
-        bootstrap_servers=['10.98.131.151:9099'],
+        bootstrap_servers=['10.105.85.14:9099'],
         value_serializer=lambda v: json.dumps(v).encode('ascii'),
         key_serializer=lambda v: json.dumps(v).encode('ascii')
     )

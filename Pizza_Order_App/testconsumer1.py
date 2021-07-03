@@ -12,7 +12,7 @@ import os
 
 def multiconsume_pizza_messages(kafka_admin_client):
     #kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
-     #   bootstrap_servers='10.98.131.151:9099'
+     #   bootstrap_servers='10.105.85.14:9099'
     #)
 
     broker_topics = kafka_admin_client.list_topics()
@@ -33,7 +33,7 @@ def multiconsume_pizza_messages(kafka_admin_client):
         if Exists:
             consumer = KafkaConsumer(f"{name}",
                          group_id='pizza-order',
-                         bootstrap_servers=['10.98.131.151:9099'],
+                         bootstrap_servers=['10.105.85.14:9099'],
                          #auto_offset_reset='earliest',
                          auto_offset_reset='latest',
                          enable_auto_commit=False,
