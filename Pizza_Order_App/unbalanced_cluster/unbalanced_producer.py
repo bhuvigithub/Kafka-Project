@@ -69,7 +69,7 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
                  max_waiting_time_in_sec=5):
     LOG.info("Create Kafka Admin Client")
     kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
-        bootstrap_servers='10.98.131.151:9099'
+        bootstrap_servers='10.103.184.140:9099'
         )
     # Get the mapping from topic to node id for partitions with leader replicas on that node
     topicleadnode: Dict[str, Dict[int, List[int]]] = sorting_partitions_by_leader(kafka_admin_client)
@@ -79,7 +79,7 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
     nodes: List[int] = [node.nodeId for node in kafka_admin_client._client.cluster.brokers()]
     
     producer = KafkaProducer(
-        bootstrap_servers=['10.105.85.14:9099'],
+        bootstrap_servers=['10.103.184.140:9099'],
         value_serializer=lambda v: json.dumps(v).encode('ascii'),
         key_serializer=lambda v: json.dumps(v).encode('ascii')
     )
