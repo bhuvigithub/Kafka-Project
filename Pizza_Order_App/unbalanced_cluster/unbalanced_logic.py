@@ -79,8 +79,6 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
     # Get list of all node ids in the cluster
     LOG.info("Get the existing Kafka node list")
     nodes: List[int] = [node.nodeId for node in kafka_admin_client._client.cluster.brokers()]
-    #for n in nodes:
-    #print(n)
     producer = KafkaProducer(
         bootstrap_servers=['localhost:9099'],
         value_serializer=lambda v: json.dumps(v).encode('ascii'),
@@ -150,10 +148,7 @@ def topics_creation(**kwargs) -> None:
         LOG.error("No brokers available")
 
 
-# calling the produce_pizza_messages function that take 3 parameters as inputs
-# Param-1 - topic-name
-# Param-2 - no-of-messages 
-# Param-3 - max-waiting-time
+# calling the produce_unbalanced_pizza_messages function that take 3 parameters as inputs
 def custom_round(num):
     dec = num - int(num)
     if dec>0.5:

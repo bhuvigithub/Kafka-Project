@@ -11,7 +11,7 @@ import logging
 from typing import List
 from kafka.admin import KafkaAdminClient, NewTopic
 from kafka.protocol.admin import Response
-
+from random import randint
 LOG: logging.Logger = logging.getLogger("kafka-topic-loader.topic")
 
 def create_topics(
@@ -56,7 +56,7 @@ def create_topics(
                 NewTopic(
                     name=name,
                     num_partitions=per_topic_partition,
-                    replication_factor=no_of_replicas_per_partition,
+                    replication_factor=randint(1,no_of_replicas_per_partition)
                 )
             )
 
