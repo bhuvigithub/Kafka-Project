@@ -22,9 +22,9 @@ fetchdata = response.json()['data']['result']
 #labelnames = set()
 querynames = set()
 #for result in results:
-for val in fetchdata:
+for result in fetchdata:
       #labelnames.update(result['metric'].keys())
-      querynames.update(val['metric'].keys())
+      querynames.update(result['metric'].keys())
 # Canonicalize
 #labelnames.discard('__name__')
 querynames.discard('__name__')
@@ -34,15 +34,16 @@ querynames = sorted(querynames)
 writer = csv.writer(sys.stdout)
 # Write the header,
 #writer.writerow(['name', 'timestamp', 'values'] + labelnames)
+#writer.writerow(['name', 'timestamp', 'values'] + querynames)
 writer.writerow(['name', 'timestamp', 'values'] + querynames)
 
 # Write the sanples.
 #for result in results:
-for val in fetchdata:
+for result in fetchdata:
     #l = [result['metric'].get('__name__', '')] + result['values']
-    l = [val['metric'].get('__name__', '')] + val['values']
+    l = [result['metric'].get('__name__', '')] + result['value']
     #for label in labelnames:
     for query in querynames:
         #l.append(result['metric'].get(label, ''))
-        l.append(val['metric'].get(query, ''))
+        l.append(result['metric'].get(query, ''))
     writer.writerow(l)

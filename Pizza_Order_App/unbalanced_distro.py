@@ -7,12 +7,12 @@ Created on Thu June 24 11:42:51 2021
 
 import time
 import random
-import os
+#import os
 from faker import Faker
 import json
 from kafka import KafkaProducer
 from producer_pizza import PizzaSupplier
-#from decouple import config
+from decouple import config
 from unbalanced_topiccreation import execute_topic_creation
 from typing import List, Dict
 import logging
@@ -71,7 +71,7 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
                  max_waiting_time_in_sec=5):
     LOG.info("Create Kafka Admin Client")
     kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
-        bootstrap_servers='10.103.184.140:9099'
+        bootstrap_servers='localhost:9099'
         )
     # Get the mapping from topic to node id for partitions with leader replicas on that node
     topicleadnode: Dict[str, Dict[int, List[int]]] = sorting_partitions_by_leader(kafka_admin_client)
@@ -80,7 +80,7 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
     #LOG.info("Get the existing Kafka node list")
     #nodes: List[int] = [node.nodeId for node in kafka_admin_client._client.cluster.brokers()]
     producer = KafkaProducer(
-        bootstrap_servers=['10.103.184.140:9099'],
+        bootstrap_servers=['localhost:9099'],
         value_serializer=lambda v: json.dumps(v).encode('ascii'),
         key_serializer=lambda v: json.dumps(v).encode('ascii')
     )
@@ -159,7 +159,7 @@ def distro(num):
     #nom = config('NO_OF_MESSAGES') 
     LOG.info("Create Kafka Admin Client")
     kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
-        bootstrap_servers='10.103.184.140:9099'
+        bootstrap_servers='localhost:9099'
         )
     #Get list of all node ids in the cluster
     LOG.info("Get the existing Kafka node list")
@@ -174,12 +174,12 @@ def distro(num):
 def main():
    # parser = argparse.ArgumentParser()
     #args = parser.parse_args()
-    tn = os.getenv('TOPIC_NAME')
-    nom = os.getenv('NO_OF_MESSAGES')
-    mwt = os.getenv'MAX_WAIT_TIME')
-    ntop = os.getenv('NO_OF_TOPICS')
-    nptp = os.getenv'PARTITIONS_PER_TOPIC')
-    nrpp = os.getenv('REPLICAS_PER_PARTITIONS')
+    tn = config('TOPIC_NAME')
+    nom = config('NO_OF_MESSAGES')
+    mwt = config('MAX_WAIT_TIME')
+    ntop = config('NO_OF_TOPICS')
+    nptp = config('PARTITIONS_PER_TOPIC')
+    nrpp = config('REPLICAS_PER_PARTITIONS')
     
     topic_list = topics_creation(base_topic_name=tn, no_of_topics=int(ntop), 
                     per_topic_partition=int(nptp), 

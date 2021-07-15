@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-unbalancedprod
+  labels:
+    app: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - name: kafka-unbalanced-producer
+        image: bhuvidockerhub/kafkaproject:v5.0
+        ports:
+        imagePullPolicy: Always 
+        args: ["unbalanced_producer.py", "bash"]
+      imagePullSecrets:
+      - name: regcred

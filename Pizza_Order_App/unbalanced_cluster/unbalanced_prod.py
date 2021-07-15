@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu June 24 11:42:51 2021
+Created on Tue Jul 13 13:30:53 2021
 
 @author: Bhuvi
 """
@@ -164,40 +164,46 @@ def distro(num):
     #Get list of all node ids in the cluster
     LOG.info("Get the existing Kafka node list")
     nodes: List[int] = [node.nodeId for node in kafka_admin_client._client.cluster.brokers()]
-    print(nodes)
     tdf = [80,15,5]
     val = random.randrange(3)
     msgs=int(custom_round((int(num) * (float(tdf[val])/100.0))))
     return msgs
-    #yield msgs
-       
+
 def main():
    # parser = argparse.ArgumentParser()
     #args = parser.parse_args()
     tn = os.getenv('TOPIC_NAME')
     nom = os.getenv('NO_OF_MESSAGES')
-    mwt = os.getenv'MAX_WAIT_TIME')
+    mwt = os.getenv('MAX_WAIT_TIME')
     ntop = os.getenv('NO_OF_TOPICS')
-    nptp = os.getenv'PARTITIONS_PER_TOPIC')
+    nptp = os.getenv('PARTITIONS_PER_TOPIC')
     nrpp = os.getenv('REPLICAS_PER_PARTITIONS')
     
     topic_list = topics_creation(base_topic_name=tn, no_of_topics=int(ntop), 
                     per_topic_partition=int(nptp), 
                     no_of_repicas_per_partition=int(nrpp))
-   # nomgs=distro(nom)
+ 
     while True:
-      #nomgs=distro(nom)  
-      for topic in topic_list:
-        #nomgs=[int(x) for x in distro(nom)]
-        #print(nomgs)
-        produce_unbalanced_pizza_message(topic_name=topic,
-                 no_of_messages=int(distro(nom)),
-                max_waiting_time_in_sec=float(mwt)
-             )
+      rnd_index = randrange(len(topic_list))
+      topic = None
+      val = random.random()
+      if 0 <= val < 0.80:
+          topic = topic_list[rnd_index]
+      elif 0.80 <= val < 0.95:
+           topic = "new-pizza-orders-2"
+      else:
+          topic = "new-pizza-orders-1" 
+      print('Producing to ' + topic)
+      #for topic in topic_list:    
+      produce_unbalanced_pizza_message(topic_name=topic,
+            no_of_messages=int(distro(nom)),
+           #no_of_messages=int(nom),
+           max_waiting_time_in_sec=float(mwt)
+        )
+      
         #print(nom)
 
 
 if __name__ == "__main__":
     main()
-    
 

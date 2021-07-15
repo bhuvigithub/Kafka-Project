@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-consumer
+  labels:
+    app: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - name: kafka-comsumer
+        image: bhuvidockerhub/kafkaproject:v6.0
+        env:
+        - name: TOPIC_NAME
+          value: "new-pizza-orders"
+        - name: NO_OF_MESSAGES
+          value: "50"
+        - name: MAX_WAIT_TIME
+          value: "1"
+        - name: NO_OF_TOPICS
+          value: "4"
+        - name: PARTITIONS_PER_TOPIC
+          value: "3"
+        - name: REPLICAS_PER_PARTITIONS
+          value: "3"
+        ports:
+        imagePullPolicy: Always 
+        #args: ["multi_topic_producer1.py", "bash"]
+        args: ["pizzaapp_multiconsumer1.py", "bash"]
+      imagePullSecrets:
+      - name: regcred

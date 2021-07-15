@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kafka-dockerconsu
+  labels:
+    app: kafka
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - name: kafka-consumer
+        image: bhuvidockerhub/kafkaproject:v4.0
+        #env:
+        # - name:  GET_HOSTS_FROM
+        #   value: env
+        # ports:
+        # - containerPort: 9099 
+        #   protocol: TCP
+        imagePullPolicy: Always 
+        #env:
+            # - name: my-cluster-with-metrics-kafka-external-bootstrap 
+            #value: $(MY_CLUSTER_WITH_METRICS_KAFKA_EXTERNAL_BOOTSTRAP_SERVICE_HOST) 
+        args: ["pizzaapp_multiconsumer1.py", "bash"]
+      imagePullSecrets:
+      - name: regcred
