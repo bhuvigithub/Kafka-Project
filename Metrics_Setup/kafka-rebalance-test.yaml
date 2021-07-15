@@ -4,5 +4,4 @@ metadata:
   name: my-cruise-control-rebalance
   labels:
     strimzi.io/cluster: my-cluster-metrics
-# no goals specified, using the default goals from the Cruise Control configuration
 spec: {}

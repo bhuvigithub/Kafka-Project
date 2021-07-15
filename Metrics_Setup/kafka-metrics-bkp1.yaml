@@ -68,42 +68,6 @@ spec:
         configMapKeyRef:
           name: kafka-metrics
           key: cruise-control-metrics-config.yml
-    brokerCapacity:
-      inboundNetwork: 10000KB/s
-      outboundNetwork: 10000KB/s
-    config:
-      #default.goals: >
-      #  com.linkedin.kafka.cruisecontrol.analyzer.goals.RackAwareGoal,
-      #  com.linkedin.kafka.cruisecontrol.analyzer.goals.ReplicaCapacityGoal
-      cpu.balance.threshold: 1.1
-      metadata.max.age.ms: 60000
-      send.buffer.bytes: 131072
-    resources:
-      requests:
-         cpu: 1
-         memory: 512Mi
-      limits:
-         cpu: 2
-         memory: 2Gi
-    logging:
-        type: inline
-        loggers:
-          rootLogger.level: "INFO"
-    template:
-      pod:
-        metadata:
-          labels:
-            label1: value1
-        securityContext:
-          runAsUser: 1000001
-          fsGroup: 0
-        terminationGracePeriodSeconds: 120
-    readinessProbe:
-      initialDelaySeconds: 15
-      timeoutSeconds: 5
-    livenessProbe:
-      initialDelaySeconds: 15
-      timeoutSeconds: 5
   kafkaExporter:
     topicRegex: ".*"
     groupRegex: ".*"
