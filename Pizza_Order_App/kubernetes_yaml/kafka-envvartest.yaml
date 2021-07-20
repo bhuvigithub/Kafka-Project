@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kafka-envvar
+  name: kafka-balancep
   labels:
     app: kafka
 spec:
@@ -15,19 +15,19 @@ spec:
         app: kafka
     spec:
       containers:
-      - name: kafka-envtest
+      - name: kafka-balprod
         image: bhuvidockerhub/kafkaproject:v4.0
         env:
         - name: TOPIC_NAME
           value: "new-pizza-orders"
         - name: NO_OF_MESSAGES
-          value: "25"
+          value: "50"
         - name: MAX_WAIT_TIME
-          value: "2"
+          value: "1"
         - name: NO_OF_TOPICS
-          value: "3"
+          value: "4"
         - name: PARTITIONS_PER_TOPIC
-          value: "3"
+          value: "10"
         - name: REPLICAS_PER_PARTITIONS
           value: "3"
         ports:

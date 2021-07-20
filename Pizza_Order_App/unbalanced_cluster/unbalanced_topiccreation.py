@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat May 29 12:30:29 2021
+Created on Fri Jul  2 18:07:30 2021
 
 @author: Bhuvi
 """
@@ -12,6 +12,7 @@ from typing import List
 from kafka.admin import KafkaAdminClient, NewTopic
 from kafka.protocol.admin import Response
 from random import randint
+
 LOG: logging.Logger = logging.getLogger("kafka-topic-loader.topic")
 
 def create_topics(
@@ -56,7 +57,7 @@ def create_topics(
                 NewTopic(
                     name=name,
                     num_partitions=per_topic_partition,
-                    replication_factor=randint(1,no_of_replicas_per_partition)
+                    replication_factor=randint(1, no_of_replicas_per_partition),
                 )
             )
 
@@ -93,11 +94,11 @@ def execute_topic_creation(
 
     LOG.debug("Create Kafka Admin Client")
     kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
-        bootstrap_servers='10.103.184.140:9099',
+        bootstrap_servers='my-cluster-metrics-kafka-external-bootstrap:9099',
         client_id="topic-creator",
         metadata_max_age_ms=response_timeout,
     )
-
+    
     topic_list: List[str] = []
     #Will populate the list with pre-existing topics matching naming conventions
     broker_topics = kafka_admin_client.list_topics()
@@ -122,6 +123,8 @@ def execute_topic_creation(
     )
     
     
+    
+                
     for batch_response in responses:
         for topic_error in batch_response.topic_errors:
             if topic_error[2] is None:
@@ -133,4 +136,5 @@ def execute_topic_creation(
     kafka_admin_client.close()
 
     return topic_list
+
 

@@ -27,7 +27,7 @@ spec:
         - name: NO_OF_TOPICS
           value: "4"
         - name: PARTITIONS_PER_TOPIC
-          value: "3"
+          value: "10"
         - name: REPLICAS_PER_PARTITIONS
           value: "3"
         ports:

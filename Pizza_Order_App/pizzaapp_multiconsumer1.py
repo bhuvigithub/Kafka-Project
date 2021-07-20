@@ -7,7 +7,7 @@ from kafka.admin import KafkaAdminClient
 if __name__ == "__main__":
     try:
         kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
-        bootstrap_servers='10.103.184.140:9099'
+        bootstrap_servers='my-cluster-metrics-kafka-external-bootstrap:9099'
         )
         while True:
             multiconsume_pizza_messages(kafka_admin_client)

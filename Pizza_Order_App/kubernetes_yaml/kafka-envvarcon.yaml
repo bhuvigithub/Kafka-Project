@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kafka-unbalancedprod3
+  name: kafka-balancec
   labels:
     app: kafka
 spec:
@@ -15,8 +15,8 @@ spec:
         app: kafka
     spec:
       containers:
-      - name: kafka-unbprod3
-        image: bhuvidockerhub/kafkaproject:v6.0
+      - name: kafka-balconsu
+        image: bhuvidockerhub/kafkaproject:v4.0
         env:
         - name: TOPIC_NAME
           value: "new-pizza-orders"
@@ -25,14 +25,14 @@ spec:
         - name: MAX_WAIT_TIME
           value: "1"
         - name: NO_OF_TOPICS
-          value: "10"
+          value: "4"
         - name: PARTITIONS_PER_TOPIC
           value: "10"
         - name: REPLICAS_PER_PARTITIONS
           value: "3"
         ports:
         imagePullPolicy: Always 
-        args: ["unbalanced_prod.py", "bash"]
-        #args: ["pizzaapp_multiconsumer1.py", "bash"]
+        #args: ["multi_topic_producer1.py", "bash"]
+        args: ["pizzaapp_multiconsumer1.py", "bash"]
       imagePullSecrets:
       - name: regcred

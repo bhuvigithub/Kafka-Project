@@ -12,7 +12,7 @@ ADD pizzaapp_consumer.py /
 
 ADD multi_topic_producer1.py /
 
-ADD topiccreation.py /
+ADD unbalanced_topiccreation.py /
 
 ADD multiconsumer.py /
 
@@ -20,7 +20,11 @@ ADD testconsumer1.py /
 
 ADD pizzaapp_multiconsumer1.py /
 
-ADD unbalanced_producer.py /
+ADD unbalanced_prod.py /
+
+ADD unbalanced_distro.py /
+
+ADD unbalanced_so.py /
 
 ADD unbalanced_test_producer.py /
 
@@ -28,13 +32,13 @@ ADD partition.py /
 
 ARG KAFKA_TOPIC_NAME=new-pizza-orders
 
-ARG KAFKA_NO_OF_MESSAGES=10
+ARG KAFKA_NO_OF_MESSAGES=50
 
 ARG KAFKA_MAX_WAIT_TIME=1
 
-ARG KAFKA_NO_OF_TOPICS=3
+ARG KAFKA_NO_OF_TOPICS=4
 
-ARG KAFKA_PARTITIONS_PER_TOPIC=3
+ARG KAFKA_PARTITIONS_PER_TOPIC=10
 
 ARG KAFKA_REPLICAS_PER_PARTITIONS=3
 
@@ -60,7 +64,7 @@ RUN pip install faker
 
 RUN pip install python-decouple
 
-CMD [ "unbalanced_producer.py" ] 
+CMD [ "unbalanced_prod.py" ] 
 
 ENTRYPOINT [ "python3" ] 
 

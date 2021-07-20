@@ -33,7 +33,7 @@ def multiconsume_pizza_messages(kafka_admin_client):
         if Exists:
             consumer = KafkaConsumer(f"{name}",
                          group_id='pizza-order',
-                         bootstrap_servers=['10.103.184.140:9099'],
+                         bootstrap_servers=['my-cluster-metrics-kafka-external-bootstrap:9099'],
                          #auto_offset_reset='earliest',
                          auto_offset_reset='latest',
                          enable_auto_commit=False,
