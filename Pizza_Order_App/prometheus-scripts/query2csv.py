@@ -30,7 +30,7 @@ writer.writerow(['name', 'timestamp', 'values'] + querynames)
 
 # Write the samples.
 for val in fetchdata:
-    l = [val['metric'].get('__name__', '')] + val['values']
+    l = [val['metric'].get('__name__', '')] + val['value']
     for query in querynames:
         l.append(val['metric'].get(query, ''))
     writer.writerow(l)
