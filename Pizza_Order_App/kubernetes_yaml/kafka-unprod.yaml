@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kafka-unbalancedprod3
+  name: kafka-unbalancedfinalprod
   labels:
     app: kafka
 spec:
@@ -15,7 +15,7 @@ spec:
         app: kafka
     spec:
       containers:
-      - name: kafka-unbprod3
+      - name: kafka-unbprodfinal
         image: bhuvidockerhub/kafkaproject:v6.0
         env:
         - name: TOPIC_NAME
@@ -25,7 +25,7 @@ spec:
         - name: MAX_WAIT_TIME
           value: "1"
         - name: NO_OF_TOPICS
-          value: "10"
+          value: "100"
         - name: PARTITIONS_PER_TOPIC
           value: "10"
         - name: REPLICAS_PER_PARTITIONS
