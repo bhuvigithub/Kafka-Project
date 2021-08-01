@@ -1,0 +1,8 @@
+name,timestamp,values,pod
+container_memory_usage_bytes,1627481717,225603617,my-cluster-metrics-kafka-2-BR
+container_memory_usage_bytes,1627481728,207659469,my-cluster-metrics-kafka-2-BR
+container_memory_usage_bytes,1627481739,190146852,my-cluster-metrics-kafka-2-BR
+container_memory_usage_bytes,1627481757,198042731,my-cluster-metrics-kafka-2-DR
+container_memory_usage_bytes,1627481776,203988478,my-cluster-metrics-kafka-2-DR
+container_memory_usage_bytes,1627481793,185085053,my-cluster-metrics-kafka-2-DR
+container_memory_usage_bytes,1627481813,114941589,my-cluster-metrics-kafka-2-DR
