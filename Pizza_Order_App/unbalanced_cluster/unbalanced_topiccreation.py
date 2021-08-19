@@ -2,9 +2,9 @@
 """
 Created on Fri Jul  2 18:07:30 2021
 
-@author: Bhuvi
+@author: Bhubanesh Mishra
 """
-
+# topic creation logic inspired from this repo - https://github.com/tomncooper/kafka-topic-loader/blob/master/topics.py
 #import datetime as dt
 import logging
 #from collections import defaultdict

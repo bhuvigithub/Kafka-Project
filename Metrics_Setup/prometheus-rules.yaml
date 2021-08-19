@@ -1,3 +1,5 @@
+# Code reused from the Official Strmzi repo - https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics/prometheus-install
+# Changes made as per the requirement
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:

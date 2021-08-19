@@ -2,7 +2,7 @@
 """
 Created on Sat June 26 13:35:19 2021
 
-@author: Bhuvi
+@author: Bhubanesh Mishra
 """
 import logging
 #import math
@@ -57,10 +57,10 @@ def sorting_partitions_by_leader(
 
 def get_loaded_topics(kafka_admin_client: KafkaAdminClient) -> List[str]:
 
-    LOG.info("Fetching the topic names")
+    LOG.info("Fetch the topic names")
     topics: Set[str] = kafka_admin_client._client.cluster.topics(exclude_internal_topics=True)
 
-    LOG.debug("Creating the Kafka Admin Client")
+    LOG.debug("Create the Kafka Admin Client")
     kafka_admin_client.close()
 
     return [topic for topic in topics

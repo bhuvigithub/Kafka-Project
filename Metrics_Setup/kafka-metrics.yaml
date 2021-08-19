@@ -1,3 +1,5 @@
+# Code reused from the Official Strmzi repo - https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics
+# Changes made as per the requirement
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:

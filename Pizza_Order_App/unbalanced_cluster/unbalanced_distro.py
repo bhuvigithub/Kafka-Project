@@ -2,9 +2,10 @@
 """
 Created on Thu June 24 11:42:51 2021
 
-@author: Bhuvi
+@author: Bhubanesh Mishra
 """
-
+# fake order generation logic inspired from this repo - https://github.com/aiven/kafka-python-fake-data-producer
+#changes made as per the project requirement
 import time
 import random
 import os
@@ -73,10 +74,11 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
     kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
         bootstrap_servers='my-cluster-metrics-kafka-external-bootstrap:9099'
         )
-    # Get the mapping from topic to node id for partitions with leader replicas on that node
+# inspired from https://github.com/tomncooper/kafka-topic-loader/blob/master/producers.py
+    # Retrieve the mapping from topic to node ids for partitions with leader replicas on that particular node
     topicleadnode: Dict[str, Dict[int, List[int]]] = sorting_partitions_by_leader(kafka_admin_client)
 
-    # Get list of all node ids in the cluster
+    # Obtain list of all node ids in the cluster
     #LOG.info("Get the existing Kafka node list")
     #nodes: List[int] = [node.nodeId for node in kafka_admin_client._client.cluster.brokers()]
     producer = KafkaProducer(
@@ -102,10 +104,10 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
                multiplier: int = 1
                partitions: List[int]
                for partitions in node_partiton_leaders.values():
-                   # For each node cycle through the partitions whose leaders are on that node
+                   # Cycle through the partitions whose leaders are on that node, for each node.
                    partition: int
                    for partition in partitions:
-                       # For each partition send a number of messages depending on how far down the node list we are
+                       # Send a certain amount of messages for each partition, depending on how far down the node list we are.
                        for _ in range(multiplier):
                            try:
                                #print("Sending: {}".format(message))
@@ -115,7 +117,7 @@ def produce_unbalanced_pizza_message(topic_name='new-pizza-orders',
                                             value=message, partition=partition)
                            except KafkaTimeoutError:
                                LOG.error("Unable to fetch metadata")
-                   # Send more messages to the next node in the list
+                   # More messages should be sent to the next node in the list.
                    multiplier += 1
            # Sleeping time
            sleep_time = random.randint(0, max_waiting_time_in_sec * 10)/10
@@ -149,6 +151,7 @@ def topics_creation(**kwargs) -> None:
 
 
 # calling the produce_unbalanced_pizza_messages function that take 3 parameters as inputs
+#function for rounding up the message no while sending
 def custom_round(num):
     dec = num - int(num)
     if dec>0.5:
@@ -161,7 +164,7 @@ def distro(num):
     kafka_admin_client: KafkaAdminClient = KafkaAdminClient(
         bootstrap_servers='my-cluster-metrics-kafka-external-bootstrap:9099'
         )
-    #Get list of all node ids in the cluster
+    #Obtain list of all node ids in the cluster
     LOG.info("Get the existing Kafka node list")
     nodes: List[int] = [node.nodeId for node in kafka_admin_client._client.cluster.brokers()]
     print(nodes)

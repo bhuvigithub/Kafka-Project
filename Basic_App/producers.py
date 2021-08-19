@@ -2,7 +2,7 @@
 """
 Created on Tue May 11 14:17:02 2021
 
-@author: Bhuvi
+@author: Bhubanesh Mishra
 """
 
 from kafka import KafkaProducer
@@ -53,6 +53,3 @@ def produce_messages():
     producer.flush()
     producer.close()
 
-    # configure multiple retries
-    #producer = KafkaProducer(retries=5)
-#produce_messages()

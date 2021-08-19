@@ -1,9 +1,10 @@
 import csv
 import requests
 import sys
-# inspired by https://github.com/RobustPerception/python_examples/blob/master/csv/query_csv.py
+# logic inspired by https://github.com/RobustPerception/python_examples/blob/master/csv/query_csv.py
 """
 A simple program to print the result of a Prometheus query as CSV.
+@ Author: Bhubanesh Mishra
 """
 
 if len(sys.argv) != 3:

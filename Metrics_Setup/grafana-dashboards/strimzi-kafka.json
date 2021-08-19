@@ -1,3 +1,4 @@
+#data reused from the exitisiting strimzi dashboard - https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics/grafana-dashboards
 {
   "__inputs": [
     {

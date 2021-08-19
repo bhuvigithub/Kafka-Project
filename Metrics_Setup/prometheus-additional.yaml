@@ -1,3 +1,5 @@
+# Code reused from the Official Strmzi repo - https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics/prometheus-additional-properties
+# Changes made as per the requirement
 apiVersion: v1
 kind: Secret
 metadata:

@@ -2,7 +2,7 @@
 """
 Created on Tue May 10 14:17:21 2021
 
-@author: Bhuvi
+@author: Bhubanesh Mishra
 """
 
 from kafka import KafkaConsumer
@@ -27,15 +27,3 @@ def consume_messages():
                                           message.value))
 
 
-# Subscribe to the regex topic pattern
-#consumer = KafkaConsumer()
-#consumer.subscribe(pattern='^awesome.*')
-
-# Using multiple consumers in parallel
-
-#consumer1 = KafkaConsumer('test-topic',
- #                         group_id='test-group',
-  #                        bootstrap_servers=['localhost:9095'])
-#consumer2 = KafkaConsumer('test-topic',
- #                         group_id='test-group',
-  #                        bootstrap_servers=['localhost:9095'])
