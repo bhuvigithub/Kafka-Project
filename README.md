@@ -10,7 +10,7 @@ The Metrics_Setup folder contains the files that were reused from the Strimzi's 
 
 The basic application developed is inside the Basic_App folder.
 
-The Pizza_Order_App folder consists of a example application which involves generating fake pizza orders as part Kafka streaming data.
+The Pizza_Order_App folder consists of a example python application which involves generating fake pizza orders as part Kafka streaming data.
 
 It also has balanced and unbalanced cluster folder which contains the logic for those.
 
