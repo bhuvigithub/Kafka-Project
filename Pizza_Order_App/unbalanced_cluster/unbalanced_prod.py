@@ -189,10 +189,10 @@ def main():
     while True:
       rnd_index = randrange(len(topic_list))
       topic = None
-      val = random.random()
-      if 0 <= val < 0.80:
+      value = random.random()
+      if 0 <= value < 0.80:
           topic = topic_list[rnd_index]
-      elif 0.80 <= val < 0.95:
+      elif 0.80 <= value < 0.95:
            topic = "new-pizza-orders-2"
       else:
           topic = "new-pizza-orders-1" 
